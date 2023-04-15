@@ -9,6 +9,12 @@
             </el-icon>
             <span>管理员首页</span>
           </el-menu-item>
+          <el-menu-item index="/home/emergency">
+            <el-icon>
+              <FullScreen />
+            </el-icon>
+            <span>急救卡</span>
+          </el-menu-item>
         </el-menu>
       </el-aside>
       <el-container>
@@ -61,7 +67,7 @@ const profile = reactive({
 .el-menu-item.is-active {
   background: var(--el-menu-hover-bg-color);
 }
-.el-menu > li {
+.el-menu > li:not(:last-of-type) {
   margin-top: 30px;
 }
 </style>

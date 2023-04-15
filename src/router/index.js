@@ -17,6 +17,10 @@ const routes = [
         path: "admin",
         component: () => import("@views/Admin/index.vue"),
       },
+      {
+        path: "emergency",
+        component: () => import("@views/Emergency/index.vue"),
+      },
     ],
   },
   {
