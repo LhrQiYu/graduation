@@ -31,3 +31,15 @@ export const removeUserInfo = (data) =>
  */
 export const getEmergencyCardList = () =>
   axiosInstance.post("/goods/card-list").then(({ data }) => data ?? []);
+/**
+ * @description 编辑单个急救卡
+ * @param {Object} data
+ */
+export const updateEmergencyInfo = (data) =>
+  axiosInstance.post("/goods/species-update", data).then((res) => res);
+/**
+ * @description 编辑单个急救卡
+ * @param {Object} data
+ */
+export const removeEmergencyInfo = (data) =>
+  axiosInstance.post("/goods/card-remove", data).then((res) => res);

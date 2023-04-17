@@ -27,24 +27,24 @@
     </el-table-column>
   </el-table>
   <el-dialog v-model="dialogVisible" title="修改用户基本信息" width="30%" :before-close="handleClose">
-    <el-form :model="userFormInfo" ref="userForm" class="login-form">
-      <el-form-item prop="account" :rules="[{ required: true, message: '请输入名称', trigger: 'blur' }]">
-        <el-input v-model="userFormInfo.account" placeholder="请输入名称" />
+    <el-form :model="userFormInfo" ref="userForm" class="login-form" label-suffix="：">
+      <el-form-item prop="account" :rules="[{ required: true, message: '请输入用户名称', trigger: 'blur' }]" label="用户名称">
+        <el-input v-model="userFormInfo.account" placeholder="请输入用户名称" />
       </el-form-item>
-      <el-form-item prop="password" :rules="[{ required: true, message: '请输入密码', trigger: 'blur' }]">
+      <el-form-item prop="password" :rules="[{ required: true, message: '请输入密码', trigger: 'blur' }]" label="密码">
         <el-input v-model="userFormInfo.password" type="password" show-password placeholder="请输入密码" />
       </el-form-item>
-      <el-form-item prop="name">
+      <el-form-item prop="name" label="昵称" :rules="[{ required: true, message: '请输入昵称', trigger: 'change' }]">
         <el-input v-model="userFormInfo.name" placeholder="请输入用户昵称" />
       </el-form-item>
-      <el-form-item prop="type" :rules="[{ required: true, message: '请选择性别', trigger: 'change' }]">
+      <el-form-item prop="type" :rules="[{ required: true, message: '请选择性别', trigger: 'change' }]" label="性别">
         <el-select v-model="userFormInfo.type" placeholder="请选择性别">
           <el-option value="0" label="女" />
           <el-option value="1" label="男" />
         </el-select>
       </el-form-item>
-      <el-form-item prop="describe" :rules="[{ required: true, message: '请选输入昵称', trigger: 'change' }]">
-        <el-input v-model="userFormInfo.describe" placeholder="请输入昵称" />
+      <el-form-item prop="describe" :rules="[{ required: true, message: '请选入简述', trigger: 'change' }]" label="简述">
+        <el-input v-model="userFormInfo.describe" placeholder="请输入简述" />
       </el-form-item>
     </el-form>
     <template #footer>
