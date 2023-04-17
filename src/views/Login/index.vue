@@ -23,6 +23,9 @@ import { useUserStore } from "@/store";
 import { ElMessage } from "element-plus";
 import { login } from "@/http/request";
 const router = useRouter();
+/**
+ * @description 定义向服务器传输的数据格式
+ */
 const loginForm = reactive({
   account: "",
   password: "",
@@ -31,10 +34,16 @@ const loginForm = reactive({
 const loginLoading = ref(false);
 const userInfo = useUserStore();
 const loginFormRef = ref(null);
+/**
+ * @description 登录的用户名和密码验证规则
+ */
 const loginRules = {
   account: [{ required: true, message: "请输入用户名", trigger: "blur" }],
   password: [{ required: true, message: "请输入密码", trigger: "blur" }],
 };
+/**
+ * @description 点击登录按钮时 会发送请求并校验 如果通过后会在pinia中和localStroage中把用户信息储存起来 并跳转到用户列表页面 如果没通过校验 则提示服务器返回的信息
+ */
 const handleLogin = () => {
   loginFormRef.value.validate((valid) => {
     if (valid) {

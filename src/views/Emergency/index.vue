@@ -2,7 +2,6 @@
   <el-table :data="cardList.tableData" style="width: 100%">
     <el-table-column prop="name" label="姓名" />
     <el-table-column prop="age" label="年龄" />
-    <!-- <el-table-column prop="userId" label="ID" /> -->
     <el-table-column prop="bloodType" label="血型" />
     <el-table-column prop="medications" label="服药情况" />
     <el-table-column prop="IDNumber" label="身份证号" />
@@ -19,8 +18,6 @@
     <el-table-column label="紧急联系人电话号码" width="200">
       <template #default="{row}">
         <div v-for="(item,index) of row.betweens" :key="index" class="otherInfos">
-          <!-- <el-tag type="success">{{item.label}}</el-tag> -->
-          <!-- <el-tag type="danger">{{item.phone}}</el-tag> -->
           <span>{{item.label}}</span>
           -
           <span>{{item.phone}}</span>
@@ -44,9 +41,15 @@ import { getEmergencyCardList } from "@/http/request";
 const cardList = reactive({
   tableData: [],
 });
+/**
+ * @description 请求急救卡列表 并将数据赋值给响应式的tableData
+ */
 getEmergencyCardList().then((res) => {
   cardList.tableData = res;
 });
+/**
+ * @description 将时间戳转换为年月日 时分秒 的格式
+ */
 const timeFormatter = (row) => dayjs(row.time).format("YYYY-MM-DD HH:mm:ss");
 </script>
 

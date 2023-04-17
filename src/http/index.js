@@ -4,6 +4,7 @@ const service = axios.create({
   timeout: 5000,
 });
 
+// 请求拦截器 在发送请求之前从localStroage带上带上token
 service.interceptors.request.use(
   (config) => {
     config.headers.token = localStorage.getItem("token") || "";
@@ -14,7 +15,7 @@ service.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
+// 响应拦截器
 service.interceptors.response.use(
   (response) => {
     return response.data;

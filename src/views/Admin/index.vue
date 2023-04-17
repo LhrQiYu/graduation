@@ -57,7 +57,6 @@
     </template>
   </el-dialog>
 </template>
-
 <script setup>
 import { reactive, ref } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
@@ -67,6 +66,9 @@ let state = reactive({
   tableData: [],
 });
 const userForm = ref(null);
+/**
+ * @description 定义提交表单的数据类型
+ */
 const userFormInfo = reactive({
   account: null,
   password: null,
@@ -76,13 +78,23 @@ const userFormInfo = reactive({
   _id: null,
   id: null,
 });
+/**
+ * @description 定义编辑弹窗控制显隐的变量
+ */
 const dialogVisible = ref(false);
+/**
+ * @description 进入这个路由时请求表格数据
+ */
 const handleGetUserList = () => {
   getUserList().then((res) => {
     state.tableData = res;
   });
 };
 handleGetUserList();
+/**
+ * @description 删除数据之前弹出确认弹窗
+ * @param {string} id
+ */
 const handleRemoveUserInfo = (id) => {
   ElMessageBox.confirm("确定要删除吗", "删除", {
     cancelButtonText: "取消",
@@ -90,6 +102,7 @@ const handleRemoveUserInfo = (id) => {
   })
     .then(() => {
       removeUserInfo({ id }).then(({ code }) => {
+        // 删除完之后重新请求表格数据
         if (code === 200) {
           handleGetUserList();
         }
@@ -97,9 +110,11 @@ const handleRemoveUserInfo = (id) => {
     })
     .catch((err) => {
       console.warn(err);
-      // catch error
     });
 };
+/**
+ * @description 删除数据，并在删除数据之前弹出确认弹窗
+ */
 const handleUpdateUser = () => {
   userForm.value.validate((valid) => {
     if (valid) {
@@ -115,6 +130,10 @@ const handleUpdateUser = () => {
     }
   });
 };
+/**
+ * @description 点击编辑按钮时 打开弹窗 并找到表格中对应这条数据 赋值给弹窗定义的数据
+ * @param {string} id
+ */
 const handleGetUserInfo = (id) => {
   dialogVisible.value = true;
   const {
@@ -134,6 +153,9 @@ const handleGetUserInfo = (id) => {
   userFormInfo._id = key;
   userFormInfo.id = _key;
 };
+/**
+ * @description 关闭弹窗
+ */
 const handleClose = () => {
   dialogVisible.value = false;
 };

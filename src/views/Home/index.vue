@@ -34,6 +34,9 @@
 import { useUserStore } from "@/store";
 import { reactive } from "vue";
 let { userInfo } = useUserStore();
+/**
+ * @description 储存头像和用户姓名 头像目前后端没返 目前是CDN地址 姓名储存在pinia里 刷新页面会丢失 储存在localStroage中
+ */
 const profile = reactive({
   avatar:
     "https://www.shicimingju.com/upload/images/xiaz/2022/0218/1645148300461.jpg",
